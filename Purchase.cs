@@ -126,22 +126,22 @@ namespace UnitTestProject1
                         break;
 
                     case "iPhone 99":
-                        cellPhones[cellPhones.Length + 1] = phone;
+
                         price = price - 6000;
                         break;
 
                     case "Samsung Galaxy 99":
-                        cellPhones[cellPhones.Length + 1] = phone;
+
                         price = price - 1000;
                         break;
 
                     case "Sony Xperia 99":
-                        cellPhones[cellPhones.Length + 1] = phone;
+
                         price = price - 900;
                         break;
 
                     case "Huawei 99":
-                        cellPhones[cellPhones.Length + 1] = phone;
+
                         price = price - 900;
                         break;
 
@@ -151,10 +151,9 @@ namespace UnitTestProject1
 
                 return price;
             }
-            catch (Exception e)
+            catch
             {
-                Console.WriteLine(e.toString());
-                throw;
+                throw new ArgumentException();
             }
             return 0;
         }
@@ -170,10 +169,9 @@ namespace UnitTestProject1
                 }
                 return "Please select at least 1 item before you check out.";
             }
-            catch (Exception e)
+            catch
             {
-                Console.WriteLine(e.toString());
-                return "Something went wrong.";
+                throw new ArgumentOutOfRangeException();
             }
         }
     }
