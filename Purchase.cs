@@ -113,13 +113,68 @@ namespace UnitTestProject1
         // Patrik
         public int unselectPhone(string phone)
         {
+            try
+            {
+                int index = Array.IndexOf(CellPhones, phone);
+                this.CellPhones = this.CellPhones.Where((val, idx) => idx != index).ToArray();
+
+                switch (phone)
+                {
+                    case "Motorola G99":
+                        
+                        price = price - 800;
+                        break;
+
+                    case "iPhone 99":
+                        cellPhones[cellPhones.Length + 1] = phone;
+                        price = price - 6000;
+                        break;
+
+                    case "Samsung Galaxy 99":
+                        cellPhones[cellPhones.Length + 1] = phone;
+                        price = price - 1000;
+                        break;
+
+                    case "Sony Xperia 99":
+                        cellPhones[cellPhones.Length + 1] = phone;
+                        price = price - 900;
+                        break;
+
+                    case "Huawei 99":
+                        cellPhones[cellPhones.Length + 1] = phone;
+                        price = price - 900;
+                        break;
+
+                    default:
+                        throw new ArgumentException();
+                }
+
+                return price;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.toString());
+                throw;
+            }
             return 0;
         }
 
         // Patrik
         public string checkOut()
         {
-            return "";
+            try
+            {
+                if (price > 0)
+                {
+                    return $"The total price is: {price}";
+                }
+                return "Please select at least 1 item before you check out.";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.toString());
+                return "Something went wrong.";
+            }
         }
     }
 }
