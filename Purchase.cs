@@ -31,14 +31,29 @@ namespace UnitTestProject1
         {
             if (internetConnection)
             {
+                /*
                 int currentPrice = Price;
                 currentPrice += 200;
-                return currentPrice;
+                */
+                if (InternetConnection == false) 
+                {
+                    Price += 200;
+                }
+
+                InternetConnection = true;
+                return Price;
 
             }
             else
             {
-                return 0;
+                if(InternetConnection == true)
+                {
+                    Price -= 200;
+                }
+
+                InternetConnection = false;
+                return Price;
+
             }
         }
 
@@ -46,15 +61,20 @@ namespace UnitTestProject1
         // Christian
         public int addPhoneLines()
         {
-            if (this.phoneLines == 8)
+            if (this.phoneLines >= 8)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("Maximum allowed phonelines are 8");
+
             }
             else
             {
+                /*
                 int currentPhoneLines = this.phoneLines;
                 currentPhoneLines += 1;
                 return currentPhoneLines;
+                */
+                PhoneLines += 1;
+                return PhoneLines;
             }
         }
 
@@ -155,7 +175,6 @@ namespace UnitTestProject1
             {
                 throw new ArgumentException();
             }
-            return 0;
         }
 
         // Patrik

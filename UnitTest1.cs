@@ -7,17 +7,91 @@ namespace UnitTestProject1
     public class UnitTest1
     {
         // includingExcludingInternetConnection -> Patrik
+        // CASE1 : Set false from false => Price does not change + InternetConnection is false
+        // CASE2 : Set true from false => Price increases by 200 + InternetConnection is true
+        // CASE3 : Set false from true => Price decreases by 200 + InternetConnection is false
+        // CASE4 : Set true from false => Price does not change +  InternetConnection is ture
+
         [TestMethod]
-        public void TestMethod1()
+        public void includingExcludingInternetConnection_shouldChangeInternetConnectionAndPrice()
         {
 
+                                                    //ARRANGE
+            //-----------------------------------------------------------------------------------------------------------------
+
+            //CASE1
+            Purchase pToSetToFalseFromFalse = new Purchase(false, 6, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
+            //CASE2
+            Purchase pToSetToTrueFromFalse = new Purchase(false, 6, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
+            //CASE3 
+            Purchase pToSetToFalseFromTrue = new Purchase(true, 6, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 200);
+            //CASE4
+            Purchase pToSetToTrueFromTrue = new Purchase(true, 6, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 200);
+
+                                                    //ACT
+            //-----------------------------------------------------------------------------------------------------------------
+
+            //CASE1
+            int pToSetToFalseFromFalsePriceBeforeExecuting = pToSetToFalseFromFalse.Price;
+            pToSetToFalseFromFalse.includingExcludingInternetConnection(false);
+            //CASE2
+            int pToSetToTrueFromFalsePriceBeforeExecuting = pToSetToTrueFromFalse.Price;
+            pToSetToTrueFromFalse.includingExcludingInternetConnection(true);
+            //CASE3 
+            int pToSetToFalseFromTruePriceBeforeExecuting = pToSetToFalseFromTrue.Price;
+            pToSetToFalseFromTrue.includingExcludingInternetConnection(false);
+
+            int pToSetToTrueFromTrueBeforeExecuting = pToSetToTrueFromTrue.Price;
+            pToSetToTrueFromTrue.includingExcludingInternetConnection(true);
+
+                                                    //ASSERT
+            //-----------------------------------------------------------------------------------------------------------------
+            
+            //CASE1
+            Assert.AreEqual(false, pToSetToFalseFromFalse.InternetConnection);
+            Assert.AreEqual(pToSetToFalseFromFalsePriceBeforeExecuting, pToSetToFalseFromFalse.Price);
+            //CASE2
+            Assert.AreEqual(true, pToSetToTrueFromFalse.InternetConnection);
+            Assert.AreEqual(pToSetToTrueFromFalsePriceBeforeExecuting + 200, pToSetToTrueFromFalse.Price);
+            //CASE3 
+            Assert.AreEqual(false, pToSetToFalseFromTrue.InternetConnection);
+            Assert.AreEqual(pToSetToFalseFromTruePriceBeforeExecuting - 200, pToSetToFalseFromTrue.Price);
+            //CASE4
+            Assert.AreEqual(true, pToSetToTrueFromTrue.InternetConnection);
+            Assert.AreEqual(pToSetToTrueFromTrueBeforeExecuting, pToSetToTrueFromTrue.Price);
         }
 
         // addPhoneLines -> Patrik
+        //CAse1 : Add phoneLines to less than 8 => phoneLines increased by 1
+        //CAse2 : Add phoneLines to more or equal to 8 => ArgumentOutOfRangeException
         [TestMethod]
-        public void TestMethod2()
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void addPhoneLines_shouldIncreasePhoneLines()
         {
+                                                //ARRANGE
+            //-----------------------------------------------------------------------------------------------------------------
+            
+            //CASE1
+            Purchase pToAddPhoneLines = new Purchase(false, 0, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
+            //CASE2
+            Purchase pToAddPhoneLinesOver8 = new Purchase(false, 8, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
 
+                                                //ACT
+            //-----------------------------------------------------------------------------------------------------------------
+           
+            //CASE1
+            int pToAddPhoneLinesBefore = pToAddPhoneLines.PhoneLines;
+            pToAddPhoneLines.addPhoneLines();
+            //CASE2
+            pToAddPhoneLinesOver8.addPhoneLines();
+
+                                                //ASSERT
+            //-----------------------------------------------------------------------------------------------------------------
+           
+            //CASE1
+            Assert.AreEqual(pToAddPhoneLinesBefore + 1, pToAddPhoneLines.PhoneLines);
+            //CASE2
+            // ArgumentOutOfRangeException expected by the method
         }
 
         // removePhoneLines -> Christian
