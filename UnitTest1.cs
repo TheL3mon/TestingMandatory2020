@@ -96,14 +96,53 @@ namespace UnitTestProject1
 
         // removePhoneLines -> Christian
         [TestMethod]
-        public void TestMethod3()
+        public void RemovePhoneLines_shouldRemoveOnePhoneline_And_UpdatePrice()
         {
+            // Arrange
+            string[] plist = new string[] { "No phones." };
+            Purchase phoneLine_7 = new Purchase(false, 7, plist, 1050);
+            Purchase phoneLine_1 = new Purchase(false, 1, plist, 150);
+            Purchase phoneLine_8 = new Purchase(false, 8, plist, 1200);
+
+            // Act
+           int expectedPrice_900 = phoneLine_7.removePhoneLines();
+
+            int expectedPrice_0 = phoneLine_1.removePhoneLines();
+
+            int expectedPrice_1050 = phoneLine_8.removePhoneLines();
+
+            // Assert
+            Assert.AreEqual(900, expectedPrice_900);
+        
+            Assert.AreEqual(0, expectedPrice_0);
+            
+            Assert.AreEqual(1050, expectedPrice_1050);
+
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void RemovePhoneLines_ExpectFailure()
+        {
+            //Arrange
+            string[] plist = new string[] { "No phones." };
+            Purchase phoneLine_0 = new Purchase(false, 0, plist, 0);
+
+            try
+            {
+                phoneLine_0.removePhoneLines();
+            }
+            catch
+            {
+                throw new ArgumentOutOfRangeException();
+            }
 
         }
 
         // selectPhone -> Christian
         [TestMethod]
-        public void TestMethod4()
+        public void SelectPhone_shouldAddSelectedPhoneToPhoneList_And_UpdatePrice()
         {
 
         }
