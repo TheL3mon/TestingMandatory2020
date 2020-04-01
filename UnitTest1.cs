@@ -10,7 +10,7 @@ namespace UnitTestProject1
         // CASE1 : Set false from false => Price does not change + InternetConnection is false
         // CASE2 : Set true from false => Price increases by 200 + InternetConnection is true
         // CASE3 : Set false from true => Price decreases by 200 + InternetConnection is false
-        // CASE4 : Set true from false => Price does not change +  InternetConnection is ture
+        // CASE4 : Set true from true => Price does not change +  InternetConnection is ture
 
         [TestMethod]
         public void includingExcludingInternetConnection_shouldChangeInternetConnectionAndPrice()
@@ -62,8 +62,12 @@ namespace UnitTestProject1
         }
 
         // addPhoneLines -> Patrik
-        //CAse1 : Add phoneLines to less than 8 => phoneLines increased by 1
-        //CAse2 : Add phoneLines to more or equal to 8 => ArgumentOutOfRangeException
+        //CAse1 : Add phoneLines to 0  => phoneLines increased by 1 (from 0 to 1)
+        //CAse2 : Add phoneLines to 8 => ArgumentOutOfRangeException
+        //CAse3 : Add phoneLines to 1  => phoneLines increased by 1 (from 1 to 2)
+        //CAse4 : Add phoneLines to 5  => phoneLines increased by 1 (from 5 to 6)
+        //CAse5 : Add phoneLines to 7  => phoneLines increased by 1 (from 7 to 8)
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void addPhoneLines_shouldIncreasePhoneLines()
@@ -72,26 +76,53 @@ namespace UnitTestProject1
             //-----------------------------------------------------------------------------------------------------------------
             
             //CASE1
-            Purchase pToAddPhoneLines = new Purchase(false, 0, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
+            Purchase pToAddPhoneLines0 = new Purchase(false, 0, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
             //CASE2
             Purchase pToAddPhoneLinesOver8 = new Purchase(false, 8, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
+            //CASE3
+            Purchase pToAddPhoneLines1 = new Purchase(false, 1, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
+            //CASE4
+            Purchase pToAddPhoneLines5 = new Purchase(false, 5, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
+            //CASE5
+            Purchase pToAddPhoneLines7 = new Purchase(false, 8, new string[] { "iPhone 99", "Samsung Galaxy 99" }, 0);
 
-                                                //ACT
+
+            //ACT
             //-----------------------------------------------------------------------------------------------------------------
-           
+
             //CASE1
-            int pToAddPhoneLinesBefore = pToAddPhoneLines.PhoneLines;
-            pToAddPhoneLines.addPhoneLines();
+            int pToAddPhoneLinesBefore0 = pToAddPhoneLines0.PhoneLines;
+            pToAddPhoneLines0.addPhoneLines();
             //CASE2
             pToAddPhoneLinesOver8.addPhoneLines();
+            //CASE3
+            int pToAddPhoneLinesBefore1 = pToAddPhoneLines1.PhoneLines;
+            pToAddPhoneLines1.addPhoneLines();
+            //CASE4
+            int pToAddPhoneLinesBefore5 = pToAddPhoneLines5.PhoneLines;
+            pToAddPhoneLines5.addPhoneLines();
+            //CASE5
+            int pToAddPhoneLinesBefore7 = pToAddPhoneLines7.PhoneLines;
+            pToAddPhoneLines7.addPhoneLines();
 
-                                                //ASSERT
+
+
+            //ASSERT
             //-----------------------------------------------------------------------------------------------------------------
-           
+
             //CASE1
-            Assert.AreEqual(pToAddPhoneLinesBefore + 1, pToAddPhoneLines.PhoneLines);
+            Assert.AreEqual(pToAddPhoneLinesBefore0 + 1, pToAddPhoneLines0.PhoneLines);
             //CASE2
             // ArgumentOutOfRangeException expected by the method
+            //CASE3
+            Assert.AreEqual(pToAddPhoneLinesBefore1 + 1, pToAddPhoneLines1.PhoneLines);
+            //CASE4
+            Assert.AreEqual(pToAddPhoneLinesBefore5 + 1, pToAddPhoneLines5.PhoneLines);
+            //CASE5
+            Assert.AreEqual(pToAddPhoneLinesBefore7 + 1, pToAddPhoneLines7.PhoneLines);
+
+
+
         }
 
         // removePhoneLines -> Christian
