@@ -219,17 +219,35 @@ namespace UnitTestProject1
         [TestMethod]
         public void unselectPhone_RemoveExisting()
         {
-            // Arrange
-            string[] phonesList = new string[] { "iPhone 99", "Samsung Galaxy 99", "Huawei 99" };
-            Purchase p = new Purchase(false,0,phonesList,7900);
-            int expectedPriceAfterRemoval = 1900;
-            int priceWeGot = 0;
+            //// Arrange
+            //string[] phonesList = new string[] { "iPhone 99", "Samsung Galaxy 99", "Huawei 99" };
+            //Purchase p = new Purchase(false,0,phonesList,7900);
+            //int expectedPriceAfterRemoval = 1900;
+            //int priceWeGot = 0;
 
-            // Act
-            priceWeGot = p.unselectPhone("iPhone 99");
+            //// Act
+            //priceWeGot = p.unselectPhone("iPhone 99");
 
-            // Assert
-            Assert.AreEqual(priceWeGot, expectedPriceAfterRemoval);
+            //// Assert
+            //Assert.AreEqual(priceWeGot, expectedPriceAfterRemoval);
+
+            // Arrange 
+            string[] phonesList = new string[] { "Motorola G99", "iPhone 99", "Samsung Galaxy 99", "Sony Xperia 99", "Huawei 99" };
+            Purchase p = new Purchase(false, 0, phonesList, 0);
+
+            /* 
+             * If you look at the phone price list Motorola cost 800, IPhone 99 cost 6000 etc.
+             * This array contains the expected total price after each time we add a phone.
+             */
+            int[] expectedPrices = new int[] { -800, -6000, -1000, -900, -900 };
+
+            // Act & Assert
+            for (int j = 0; j < expectedPrices.Length; j++)
+            {
+                p.Price = 0;
+                int expectedPrice = expectedPrices[j];
+                Assert.AreEqual(p.unselectPhone(phonesList[j]), expectedPrice);
+            }
         }
 
         [TestMethod]
