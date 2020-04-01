@@ -307,5 +307,21 @@ namespace UnitTestProject1
             // Assert
             Assert.AreEqual(messageWeGot, expectedMessage);
         }
+
+        [TestMethod]
+        public void checkOut_priceIsNegative()
+        {
+            // Arrange
+            string[] phonesList = new string[] { "iPhone 99", "Samsung Galaxy 99", "Huawei 99" };
+            Purchase p = new Purchase(false, 0, phonesList, -1);
+            string expectedMessage = "Please select at least 1 item before you check out.";
+            string messageWeGot;
+
+            // Act
+            messageWeGot = p.checkOut();
+
+            // Assert
+            Assert.AreEqual(messageWeGot, expectedMessage);
+        }
     }
 }
