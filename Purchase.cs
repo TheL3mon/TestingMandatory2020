@@ -99,27 +99,22 @@ namespace UnitTestProject1
             switch (phone)
             {
                 case "Motorola G99":
-                    cellPhones[cellPhones.Length + 1] = phone;
                     price = price + 800;
                     break;
 
                 case "iPhone 99":
-                    cellPhones[cellPhones.Length + 1] = phone;
                     price = price + 6000;
                     break;
 
                 case "Samsung Galaxy 99":
-                    cellPhones[cellPhones.Length + 1] = phone;
                     price = price + 1000;
                     break;
 
                 case "Sony Xperia 99":
-                    cellPhones[cellPhones.Length + 1] = phone;
                     price = price + 900;
                     break;
 
                 case "Huawei 99":
-                    cellPhones[cellPhones.Length + 1] = phone;
                     price = price + 900;
                     break;
 
@@ -140,28 +135,23 @@ namespace UnitTestProject1
 
                 switch (phone)
                 {
-                    case "Motorola G99":
-                        
+                    case "Motorola G99":                     
                         price = price - 800;
                         break;
 
                     case "iPhone 99":
-
                         price = price - 6000;
                         break;
 
                     case "Samsung Galaxy 99":
-
                         price = price - 1000;
                         break;
 
                     case "Sony Xperia 99":
-
                         price = price - 900;
                         break;
 
                     case "Huawei 99":
-
                         price = price - 900;
                         break;
 

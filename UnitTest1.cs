@@ -144,6 +144,23 @@ namespace UnitTestProject1
         [TestMethod]
         public void SelectPhone_shouldAddSelectedPhoneToPhoneList_And_UpdatePrice()
         {
+            // Arrange 
+            string[] phonesList = new string[] { "Motorola G99", "iPhone 99", "Samsung Galaxy 99", "Sony Xperia 99", "Huawei 99" };
+            Purchase p = new Purchase(false, 0,phonesList, 0);
+            int[] expectedPrices = new int[] { 800, 6800, 7800, 8700, 9600};
+            
+            for(int i = 0;  i < phonesList.Length;  i++ )
+            {
+                for(int j = 0; j < expectedPrices.Length; j++)
+                {
+                    Console.WriteLine(phonesList[j]);
+                    Console.WriteLine(expectedPrices[j]);
+                    int expectedPrice_From_dummyArray = expectedPrices[j];
+                    Assert.AreEqual(p.selectPhone(phonesList[j]), expectedPrice_From_dummyArray);
+
+                }
+            }
+
 
         }
 
