@@ -128,8 +128,6 @@ namespace UnitTestProject1
         // Patrik
         public int unselectPhone(string phone)
         {
-                int index = Array.IndexOf(CellPhones, phone);
-                this.CellPhones = this.CellPhones.Where((val, idx) => idx != index).ToArray();
 
                 switch (phone)
                 {
@@ -157,7 +155,11 @@ namespace UnitTestProject1
                         throw new ArgumentException();
                 }
 
-                return price;
+
+            int index = Array.IndexOf(CellPhones, phone);
+            this.CellPhones = this.CellPhones.Where((val, idx) => idx != index).ToArray();
+
+            return price;
         }
 
         // Patrik

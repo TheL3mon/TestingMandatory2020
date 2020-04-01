@@ -208,33 +208,22 @@ namespace UnitTestProject1
             string[] phonesList = new string[] { "iPhone 99", "Samsung Galaxy 99", "Huawei 99" };
             Purchase p = new Purchase(false, 0, phonesList, 7900);
 
-            try
-            {
+         
                 p.unselectPhone("Sony Xperia 9999999");
-            }
-            catch (Exception e)
-            {
-
-                throw e;
-            }
+            
+           
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        //[ExpectedException(typeof(ArgumentException))]
         public void unselectPhone_RemoveNotPurchasedPhone()
         {
             string[] phonesList = new string[] { "iPhone 99", "Samsung Galaxy 99", "Huawei 99" };
             Purchase p = new Purchase(false, 0, phonesList, 7900);
 
-            try
-            {
+          
                 p.unselectPhone("Sony Xperia 99");
-            }
-            catch (Exception e)
-            {
-
-                throw e;
-            }
+          
         }
 
         // checkOut -> Daniel
