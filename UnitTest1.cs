@@ -96,7 +96,7 @@ namespace UnitTestProject1
 
         // removePhoneLines -> Christian
         [TestMethod]
-        public void RemovePhoneLines_shouldRemoveOnePhoneline_And_UpdatePrice()
+        public void removePhoneLines_shouldRemoveOnePhoneline_And_UpdatePrice()
         {
             // Arrange
             string[] plist = new string[] { "No phones." };
@@ -123,7 +123,7 @@ namespace UnitTestProject1
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void RemovePhoneLines_ExpectFailure()
+        public void removePhoneLines_ExpectFailure()
         {
             //Arrange
             string[] plist = new string[] { "No phones." };
@@ -133,34 +133,54 @@ namespace UnitTestProject1
             {
                 phoneLine_0.removePhoneLines();
             }
-            catch
+            catch(Exception e)
             {
-                throw new ArgumentOutOfRangeException();
+                throw e;
             }
 
         }
 
         // selectPhone -> Christian
         [TestMethod]
-        public void SelectPhone_shouldAddSelectedPhoneToPhoneList_And_UpdatePrice()
+        public void selectPhone_shouldAddSelectedPhoneToPhoneList_And_UpdatePrice()
         {
             // Arrange 
             string[] phonesList = new string[] { "Motorola G99", "iPhone 99", "Samsung Galaxy 99", "Sony Xperia 99", "Huawei 99" };
             Purchase p = new Purchase(false, 0,phonesList, 0);
+
+            /* 
+             * If you look at the phone price list Motorola cost 800, IPhone 99 cost 6000 etc.
+             * This array contains the expected total price after each time we add a phone.
+             */
             int[] expectedPrices = new int[] { 800, 6800, 7800, 8700, 9600};
             
-            for(int i = 0;  i < phonesList.Length;  i++ )
-            {
+            // Act & Assert
                 for(int j = 0; j < expectedPrices.Length; j++)
                 {
-                    Console.WriteLine(phonesList[j]);
-                    Console.WriteLine(expectedPrices[j]);
-                    int expectedPrice_From_dummyArray = expectedPrices[j];
-                    Assert.AreEqual(p.selectPhone(phonesList[j]), expectedPrice_From_dummyArray);
+                    int expectedPrice = expectedPrices[j];
+                    Assert.AreEqual(p.selectPhone(phonesList[j]), expectedPrice);
 
                 }
-            }
 
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void selectPhone_InputWrongValues_ShouldThrowArgumentException()
+        {
+            string[] phonesList = new string[] { "Motrola G9", "ione 1000009", "Samsung Galaxy 99", "Sony Xperia 99", "Huawei 99" };
+            Purchase p = new Purchase(false, 0, phonesList, 0);
+            try
+            {
+                for (int j = 0; j < phonesList.Length; j++)
+                {
+                    Console.WriteLine(phonesList[j]);
+                    p.selectPhone(phonesList[j]);
+                }
+            } catch (Exception e)
+            {
+                throw e;
+            }
 
         }
 
@@ -192,10 +212,10 @@ namespace UnitTestProject1
             {
                 p.unselectPhone("Sony Xperia 9999999");
             }
-            catch (ArgumentException)
+            catch (Exception e)
             {
 
-                throw new ArgumentException();
+                throw e;
             }
         }
 
@@ -210,10 +230,10 @@ namespace UnitTestProject1
             {
                 p.unselectPhone("Sony Xperia 99");
             }
-            catch (ArgumentException)
+            catch (Exception e)
             {
 
-                throw new ArgumentException();
+                throw e;
             }
         }
 
