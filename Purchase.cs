@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTestProject1
 {
@@ -26,7 +23,7 @@ namespace UnitTestProject1
             this.price = price;
         }
 
-        // Christian 
+
         public int includingExcludingInternetConnection(bool internetConnection)
         {
             if (internetConnection)
@@ -58,7 +55,7 @@ namespace UnitTestProject1
         }
 
 
-        // Christian
+
         public int addPhoneLines()
         {
             if (this.phoneLines >= 8)
@@ -78,7 +75,7 @@ namespace UnitTestProject1
             }
         }
 
-        // Daniel
+
         public int removePhoneLines()
         {
             if (phoneLines >= 1)
@@ -93,7 +90,7 @@ namespace UnitTestProject1
             return price;
         }
 
-        // Daniel
+
         public int selectPhone(string phone)
         {
             switch (phone)
@@ -125,7 +122,7 @@ namespace UnitTestProject1
             return price;
         }
 
-        // Patrik
+
         public int unselectPhone(string phone)
         {
 
@@ -162,21 +159,14 @@ namespace UnitTestProject1
             return price;
         }
 
-        // Patrik
+
         public string checkOut()
         {
-            try
-            {
                 if (price > 0)
                 {
                     return $"The total price is: {price}";
                 }
                 return "Please select at least 1 item before you check out.";
-            }
-            catch
-            {
-                throw new ArgumentOutOfRangeException();
-            }
         }
     }
 }

@@ -6,7 +6,7 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1
     {
-        // includingExcludingInternetConnection -> Patrik
+        // includingExcludingInternetConnection
         // CASE1 : Set false from false => Price does not change + InternetConnection is false
         // CASE2 : Set true from false => Price increases by 200 + InternetConnection is true
         // CASE3 : Set false from true => Price decreases by 200 + InternetConnection is false
@@ -61,7 +61,7 @@ namespace UnitTestProject1
             Assert.AreEqual(pToSetToTrueFromTrueBeforeExecuting, pToSetToTrueFromTrue.Price);
         }
 
-        // addPhoneLines -> Patrik
+        // addPhoneLines
         //CAse1 : Add phoneLines to 0  => phoneLines increased by 1 (from 0 to 1)
         //CAse2 : Add phoneLines to 8 => ArgumentOutOfRangeException
         //CAse3 : Add phoneLines to 1  => phoneLines increased by 1 (from 1 to 2)
@@ -125,7 +125,7 @@ namespace UnitTestProject1
 
         }
 
-        // removePhoneLines -> Christian
+        // removePhoneLines
         [TestMethod]
         public void removePhoneLines_shouldRemoveOnePhoneline_And_UpdatePrice()
         {
@@ -171,7 +171,7 @@ namespace UnitTestProject1
 
         }
 
-        // selectPhone -> Christian
+        // selectPhone
         [TestMethod]
         public void selectPhone_shouldAddSelectedPhoneToPhoneList_And_UpdatePrice()
         {
@@ -215,7 +215,7 @@ namespace UnitTestProject1
 
         }
 
-        // unselectPhone -> Daniel
+        // unselectPhone
         [TestMethod]
         public void unselectPhone_RemoveExisting()
         {
@@ -275,7 +275,7 @@ namespace UnitTestProject1
           
         }
 
-        // checkOut -> Daniel
+        // checkOut
         [TestMethod]
         public void checkOut_validCheckout()
         {
